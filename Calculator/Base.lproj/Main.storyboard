@@ -428,6 +428,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="desp" destination="RI6-FW-qQu" id="Qbu-YV-DSL"/>
                         <outlet property="display" destination="UVr-6U-IcH" id="iFY-SJ-nvm"/>
                     </connections>
                 </viewController>
