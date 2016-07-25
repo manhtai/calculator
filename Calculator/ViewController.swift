@@ -23,8 +23,17 @@ class ViewController: UIViewController {
             if digit == "." && display.text?.rangeOfString(".") != nil {
                 return
             }
+            if digit == "⬅︎" {
+                if currentTextInDisplay.characters.count > 0 {
+                    display.text = currentTextInDisplay.substringToIndex((currentTextInDisplay.endIndex.predecessor()))
+                }
+                return
+            }
             display.text = currentTextInDisplay + digit
         } else {
+            if digit == "⬅︎" {
+                return
+            }
             display.text = digit
             if brain.isPartialResult {
                 desp.text = brain.desp
@@ -32,16 +41,24 @@ class ViewController: UIViewController {
                 brain.clearDesp()
             }
         }
-        brain.addDesp(digit)
         userIsInTheMiddleOfTyping = true
     }
     
-    private var displayValue: Double {
+    let sixDecimalFormatter = NSNumberFormatter()
+    
+    private var displayValue: Double? {
+
         get {
-            return Double(display.text!)!
+            return Double(display.text!)
         }
         set {
-            display.text = String(newValue)
+            sixDecimalFormatter.numberStyle = .DecimalStyle
+            sixDecimalFormatter.maximumFractionDigits = 6
+            
+            if newValue == nil {
+                display.text = ""
+            }
+            display.text = sixDecimalFormatter.stringFromNumber(newValue!)
         }
     }
     
@@ -50,6 +67,7 @@ class ViewController: UIViewController {
     @IBAction private func performOperation(sender: UIButton) {
         if userIsInTheMiddleOfTyping {
             brain.setOperand(displayValue)
+            brain.addDesp(display.text!)
             userIsInTheMiddleOfTyping = false
         }
         if let mathematicSymbol = sender.currentTitle {

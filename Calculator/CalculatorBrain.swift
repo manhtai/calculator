@@ -9,14 +9,21 @@
 import Foundation
 
 
+
+
 class CalculatorBrain
 {
+
     
     private var accumulator = 0.0
     private var description = ""
     
-    func setOperand(operand: Double) {
-        accumulator = operand
+
+    
+    func setOperand(operand: Double?) {
+        if operand != nil {
+            accumulator = operand!
+        }
     }
     
     private var operations: Dictionary<String, Operation> = [

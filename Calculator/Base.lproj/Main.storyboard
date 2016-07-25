@@ -51,7 +51,7 @@
                                                 <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" title="⬅︎"/>
                                                 <connections>
-                                                    <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4ik-PT-xs7"/>
+                                                    <action selector="touchDigit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zuq-Fw-mQz"/>
                                                 </connections>
                                             </button>
                                         </subviews>
